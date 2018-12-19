@@ -1,7 +1,7 @@
 // Dependencies
 // =============================================================
 let express = require("express");
-let path = require("path");
+
 
 
 
@@ -17,7 +17,7 @@ app.use(express.json());
 
 // ROUTING
 // =============================================================
-// require("./routes/apiRoutes")(app);
+// require("./app/routing/apiRoutes")(app);
 require("./app/routing/htmlRoutes")(app);
 
 
