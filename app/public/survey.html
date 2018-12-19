@@ -25,6 +25,7 @@
         <h2>Survey Questions</h2>
         <hr />
 
+        <!-- Name and Photo Section -->
         <h3><strong>About You</strong></h3>
 
         <h4>Your Name (required)</h4>
@@ -228,36 +229,64 @@
     <!-- JavaScript logic for the page -->
     <script type="text/javascript">
 
+        // ============== FUNCTIONS ========================
+
         // builds the object that will be passed to server.js
         function userSubmission() {
             let userInfo = {
                 name: $("#userName").val().trim(),
                 photo: $("#userPhoto").val().trim(),
-                q1: $("#q1").val().trim(),
-                q2: $("#q2").val().trim(),
-                q3: $("#q3").val().trim(),
-                q4: $("#q4").val().trim(),
-                q5: $("#q5").val().trim(),
-                q6: $("#q6").val().trim(),
-                q7: $("#q7").val().trim(),
-                q8: $("#q8").val().trim(),
-                q9: $("#q9").val().trim(),
-                q10: $("#q10").val().trim(),
+                q1: $("#q1").val(),
+                q2: $("#q2").val(),
+                q3: $("#q3").val(),
+                q4: $("#q4").val(),
+                q5: $("#q5").val(),
+                q6: $("#q6").val(),
+                q7: $("#q7").val(),
+                q8: $("#q8").val(),
+                q9: $("#q9").val(),
+                q10: $("#q10").val()
             }
 
             return userInfo;
-        }
+        };
 
+        // function that makes sure the form is complete
+        function validateForm() {
+            let formOK = true;
+
+            // check the name and photo section
+            $(".form-control").each(function () {
+                // if anything in the name and photo section is blank, set the validation to false
+                if ($(this).val() === "") {
+                    formOK = false;
+                }
+            });
+
+            // check the survey section
+            $(".survey-question").each(function () {
+                // if anything in the survey section is blank, set the validation to false
+                if ($(this).val()=== null) {
+                    formOK = false;
+                }
+            });
+
+            //return the value of formOK once the above checks are done
+            return formOK;
+        };
+
+        // ============== MAIN PROCESSES ========================
         // submit button event listener
         $("#submit").on("click", function (event) {
             // prevent the default action from happening
             event.preventDefault();
 
-            // form validation of some kind
-
-            // if the form is valid, execute this function that will build the object that will post to server.js
-            console.log(userSubmission());
-
+            if (validateForm()===true) {
+                // if the form is valid, execute this function that will build the object that will post to server.js
+                console.log(userSubmission());
+            } else {
+                alert("Please answer every question!")
+            }
         });
     // end of submit button even listener
 
