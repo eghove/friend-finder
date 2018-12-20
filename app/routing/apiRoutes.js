@@ -26,14 +26,45 @@ module.exports = function (app) {
             return array;
         };
 
+
+        // this function takes in the user's score array, and an existing object in friendArray
+        function compareFriends(user, oldFriend) {
+            // store the comparison total
+            let compare = 0;
+            //turn the oldfriend's scores into an array numbers, store them
+            let oldFriendScores = scoresToNumbers(oldFriend);
+
+            for (let j=0; j < user.length; j++) {
+
+                // calculate the difference between both scores
+                let difference = user[j] - oldFriendScores[j];
+
+                // if the difference is negative, get the absolute value and then add it to compare
+                if (difference < 0) {
+                    difference = -1 * difference;
+                    compare += difference;
+
+                // else just add difference to compare
+                } else {
+                    compare += difference;
+                }
+            }
+
+            return compare;
+        }
+
         //catch the survey object and store it in variable newFriend
         let newFriend = req.body;
 
         // create the array where the new friend scores will be stored
         let newFriendScores = scoresToNumbers(newFriend);
 
+        // console.log(compareFriends(newFriendScores, friendArray[0]));
 
-        //push the survey data to friendArray
+        
+
+
+        //push the survey data to friendArray--this has to be done near the end
         friendArray.push(newFriend);
 
         // TO-DO: send back the match
