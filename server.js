@@ -10,6 +10,7 @@ let express = require("express");
 let app = express();
 const PORT = process.env.PORT || 8080;
 
+// MIDDLEWARE
 // Sets up the Express app to handle data parsing
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
@@ -17,7 +18,7 @@ app.use(express.json());
 
 // ROUTING
 // =============================================================
-// require("./app/routing/apiRoutes")(app);
+require("./app/routing/apiRoutes")(app);
 require("./app/routing/htmlRoutes")(app);
 
 

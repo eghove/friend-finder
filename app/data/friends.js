@@ -20,5 +20,5 @@ let friendArray = [
     }
 
 ];
-
+// export the data so it can be used elsewhere
 module.exports = friendArray;
