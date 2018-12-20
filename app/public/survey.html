@@ -201,7 +201,7 @@
 
                 <!-- Links -->
 
-                
+
                 <a href="/api/friends">
                     API Friends List |
                 </a>
@@ -285,13 +285,28 @@
 
             if (validateForm() === true) {
                 // if the form is valid, execute this function that will build the object that will post to server.js
-                console.log(userSubmission());
+
+                // console.log(userSubmission());
 
                 // TO-DO: AJAX POST LOGIC GOES HERE
+                $.post("/api/friends", userSubmission(),
+                    function (data) {
 
+                       
+                        if (data) {
+                            alert("Added to the survey!");
+                        }
+
+                       
+                        else {
+                            alert("Not added to the urvey");
+                        }
+                    });
+                    
             } else {
-                alert("Please answer every question!")
-            }
+
+            alert("Please answer every question!")
+        }
         }); // end of submit button even listener
 
 
