@@ -222,7 +222,27 @@
 
     </div>
 
-    <!-- TO-DO: THE MODAL GOES HERE -->
+    <!-- Modal -->
+    <div class="modal fade" id="bestMatch" tabindex="-1" role="dialog" aria-labelledby="bestMatch"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" >Your NEW BEST FRIEND is...</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <h2 id="friend-name"></h2>
+                    <img id="friend-photo" style="max-width: 100px; max-height: 100px;" src="#">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
 
 
@@ -286,24 +306,18 @@
             if (validateForm() === true) {
                 // if the form is valid, execute this function that will build the object that will post to server.js
 
-                // console.log(userSubmission());
 
-                // TO-DO: AJAX POST LOGIC GOES HERE
+                // AJAX POST LOGIC
                 $.post("/api/friends", userSubmission(),
                     function (data) {
 
 
-                        alert("This is your new friend: " + data.name);
+                        // result from AJAX post and put in modal
+                        $("#friend-name").text(data.name);
+                        $("#friend-photo").attr("src", data.photo);
 
-
-                        // if (data) {
-                        //     alert("Added to the survey!");
-                        // }
-
-
-                        // else {
-                        //     alert("Not added to the survey");
-                        // }
+                        // invoke the modal
+                        $("#bestMatch").modal("toggle");
 
                         // clear the form after successful submission
                         $("#userName").val("");

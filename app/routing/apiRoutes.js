@@ -92,7 +92,7 @@ module.exports = function (app) {
         //push the user's data to friendArray--this has to be done near the end
         friendArray.push(newFriend);
 
-        // TO-DO: send back the match
+        // send back the match
         res.send(newBestFriend);
     });
 
