@@ -65,16 +65,18 @@ module.exports = function (app) {
 
             //loop through each object in friendArray and compare
             for (k = 0; k < friendArray.length; k++) {
-                
+
                 // calls compareFriends between the user's scores and k item in friendArray
                 let temp =  compareFriends(newFriendScores, friendArray[k]);
                 if (temp < bestScore) {
                     //store name and photo of topFriend
                     topFriend.name = friendArray[k].name;
                     topFriend.photo = friendArray[k].photo;
+                    // reset bestScore to the best match total so far
+                    bestScore = temp;
                 }
             }
-            console.log(topFriend);
+           return(topFriend);
         }
 
         //catch the survey object and store it in variable newFriend
@@ -84,8 +86,10 @@ module.exports = function (app) {
         let newFriendScores = scoresToNumbers(newFriend);
 
         
-        // call compareAllFriends
-        compareAllFriends();
+        // call compareAllFriends, store the match in a variable called newBestFriend
+        let newBestFriend=compareAllFriends();
+
+        console.log(newBestFriend);
 
         
 
