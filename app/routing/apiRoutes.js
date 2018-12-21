@@ -34,7 +34,7 @@ module.exports = function (app) {
             //turn the oldfriend's scores into an array numbers, store them
             let oldFriendScores = scoresToNumbers(oldFriend);
 
-            for (let j=0; j < user.length; j++) {
+            for (let j = 0; j < user.length; j++) {
 
                 // calculate the difference between both scores
                 let difference = user[j] - oldFriendScores[j];
@@ -44,13 +44,37 @@ module.exports = function (app) {
                     difference = -1 * difference;
                     compare += difference;
 
-                // else just add difference to compare
+                    // else just add difference to compare
                 } else {
                     compare += difference;
                 }
             }
-
             return compare;
+        }
+
+        // function that compares all items in friendArray with the user
+        function compareAllFriends() {
+            //declare a place where the best score may live
+            let bestScore=51;
+
+            // create a place to store the best match as they're found
+            let topFriend = {
+                name : "Default",
+                photo: "Default"
+            }
+
+            //loop through each object in friendArray and compare
+            for (k = 0; k < friendArray.length; k++) {
+                
+                // calls compareFriends between the user's scores and k item in friendArray
+                let temp =  compareFriends(newFriendScores, friendArray[k]);
+                if (temp < bestScore) {
+                    //store name and photo of topFriend
+                    topFriend.name = friendArray[k].name;
+                    topFriend.photo = friendArray[k].photo;
+                }
+            }
+            console.log(topFriend);
         }
 
         //catch the survey object and store it in variable newFriend
@@ -59,9 +83,15 @@ module.exports = function (app) {
         // create the array where the new friend scores will be stored
         let newFriendScores = scoresToNumbers(newFriend);
 
-        // console.log(compareFriends(newFriendScores, friendArray[0]));
+        
+        // call compareAllFriends
+        compareAllFriends();
 
         
+
+        // console.log(compareFriends(newFriendScores, friendArray[0]));
+
+
 
 
         //push the survey data to friendArray--this has to be done near the end
