@@ -93,7 +93,7 @@ module.exports = function (app) {
         friendArray.push(newFriend);
 
         // TO-DO: send back the match
-        res.send(true);
+        res.send(newBestFriend);
     });
 
 
