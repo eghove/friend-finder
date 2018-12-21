@@ -292,21 +292,28 @@
                 $.post("/api/friends", userSubmission(),
                     function (data) {
 
-                       
+
                         if (data) {
                             alert("Added to the survey!");
                         }
 
-                       
+
                         else {
                             alert("Not added to the survey");
                         }
+
+                        // clear the form after successful submission
+                        $("#userName").val("");
+                        $("#userPhoto").val("");
+                        $(".survey-question").each(function () {
+                            $(this).val(null);
+                        });
                     });
 
             } else {
 
-            alert("Please answer every question!")
-        }
+                alert("Please answer every question!")
+            }
         }); // end of submit button even listener
 
 

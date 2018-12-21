@@ -89,16 +89,7 @@ module.exports = function (app) {
         // call compareAllFriends, store the match in a variable called newBestFriend
         let newBestFriend=compareAllFriends();
 
-        console.log(newBestFriend);
-
-        
-
-        // console.log(compareFriends(newFriendScores, friendArray[0]));
-
-
-
-
-        //push the survey data to friendArray--this has to be done near the end
+        //push the user's data to friendArray--this has to be done near the end
         friendArray.push(newFriend);
 
         // TO-DO: send back the match
