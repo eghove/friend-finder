@@ -12,3 +12,7 @@ Friend finder uses the following technologies:
 * jQuery,
 * Node Js, and
 * Express.
+
+## What Does Friend Frinder Look Like?
+
+![Friend Finder Main Screen](https://eghove.github.io/img/portfolio/friend-finder-1.PNG "Friend Finder Main Screen")
